@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yashin Electric</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #8BC34A;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+            color: white;
+            padding: 20px;
+            max-width: 100%;
+        }
+        .headline {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        .icon {
+            margin-bottom: 20px;
+        }
+        .icon img {
+            max-width: 90%;
+            width: 40%;
+            height: 40%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+        .store-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .store-buttons img {
+            width: 180px;
+            height: 60px;
+            object-fit: contain;
+        }
+        .share-icon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+        }
+        .share-icon img {
+            width: 30px;
+            height: 30px;
+        }
+        #copyNotification {
+            display: none;
+            position: fixed;
+            top: 60px;
+            right: 20px;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        #tempInput {
+            position: absolute;
+            left: -1000px;
+            top: -1000px;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            .store-buttons img {
+                width: 150px;
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="headline">Yashin Electric</h1>
+        <div class="icon">
+            <img src="yashin_logo1.png" alt="Charging Icon">
+        </div>
+        <div class="store-buttons">
+            <a href="https://apps.apple.com/uz/app/yashin-electric/id6544802287">
+                <img src="app_store.png" alt="Download on the App Store">
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=uz.programmsoft.yashinelectric">
+                <img src="google_play1.png" alt="Get it on Google Play">
+            </a>
+        </div>
+    </div>
+    <div class="share-icon" onclick="copyLink()">
+        <img src="copy.png" alt="Copy Link">
+    </div>
+    <div id="copyNotification">Link copied!</div>
+    <input type="text" id="tempInput">
+
+    <script>
+        const linkToCopy  = "https://yashinelectric.com";
+        function copyLink() {
+            var tempInput = document.getElementById('tempInput');
+            tempInput.value = linkToCopy;
+            tempInput.select();
+            tempInput.setSelectionRange(0, 99999); // For mobile devices
+
+            try {
+                var successful = document.execCommand('copy');
+                if (successful) {
+                    showNotification();
+                } else {
+                    console.error('Copying text command was unsuccessful');
+                }
+            } catch (err) {
+                console.error('Oops, unable to copy', err);
+            }
+
+            // Clear the temporary input
+            tempInput.value = '';
+        }
+
+        function showNotification() {
+            var notification = document.getElementById('copyNotification');
+            notification.style.display = 'block';
+            setTimeout(function() {
+                notification.style.display = 'none';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
